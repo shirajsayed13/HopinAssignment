@@ -2,7 +2,7 @@
 #include <string>
 
 extern "C" JNIEXPORT jstring
-Java_com_shiraj_network_NetString_baseUrlFromJNI(
+Java_com_shiraj_network_GithubBaseUrl_baseUrlFromJNI(
         JNIEnv *env,
         jobject /* this */) {
     std::string baseUrl = "https://api.github.com/";
