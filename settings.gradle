@@ -8,3 +8,7 @@ dependencyResolutionManagement {
 }
 rootProject.name = "SearchGithubUser"
 include ':app'
+include ':base'
+include ':core'
+include ':gui'
+include ':network'
