@@ -1,18 +1,24 @@
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'kotlin-parcelize'
+    id 'dagger.hilt.android.plugin'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
-    compileSdk 30
+    def ext = rootProject.extensions.getByName('ext')
+
+    compileSdkVersion ext.compile_sdk_version
+    buildToolsVersion ext.build_tools_version
 
     defaultConfig {
-        minSdk 21
-        targetSdk 30
+        minSdkVersion ext.min_sdk_version
+        targetSdkVersion ext.target_sdk_version
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
 
@@ -29,14 +35,58 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
-    implementation 'androidx.core:core-ktx:1.6.0'
-    implementation 'androidx.appcompat:appcompat:1.3.1'
-    implementation 'com.google.android.material:material:1.4.0'
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    // development
+    def appDependencies = rootProject.ext.appDependencies
+    api project(':base')
+    api project(':core')
+    api appDependencies.core
+    api appDependencies.appcompat
+    api appDependencies.kotlinStdlibJdk7
+    api appDependencies.lifecyleViewModel
+    api appDependencies.lifecyleLiveData
+    api appDependencies.lifecycleRuntime
+    api appDependencies.fragmentKtx
+    api appDependencies.activityKtx
+    api appDependencies.navFragment
+    api appDependencies.navUi
+    api appDependencies.timber
+    api appDependencies.constraintlayout
+    api appDependencies.recyclerview
+    api appDependencies.cardview
+    api appDependencies.glide
+    api appDependencies.hiltAndroid
+    api appDependencies.hiltXViewModel
+    api appDependencies.hiltXNavFrag
+    api appDependencies.material
+
+    kapt appDependencies.hiltCompiler
+
+    // test
+    def testDependencies = rootProject.ext.testDependencies
+
+    debugImplementation testDependencies.fragmentTesting
+
+
+    testImplementation testDependencies.junit
+    androidTestImplementation testDependencies.hitlTesting
+    androidTestImplementation testDependencies.junitAndroidX
+    androidTestImplementation testDependencies.espressoCore
+    androidTestImplementation testDependencies.espressoIntents
+    androidTestImplementation testDependencies.testRunner
+    androidTestImplementation testDependencies.testRules
+    androidTestImplementation testDependencies.navTesting
+
+    kaptAndroidTest testDependencies.hiltCompiler
+    implementation "androidx.core:core-ktx:+"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
