@@ -4,7 +4,7 @@ import com.shiraj.core.model.GithubUserModel
 import com.shiraj.core.webservice.GithubUserWS
 import javax.inject.Inject
 
-class GetWeatherInfoUseCase @Inject constructor(
+class GetGithubUserUseCase @Inject constructor(
     private val githubUserWS: GithubUserWS
 ) {
 

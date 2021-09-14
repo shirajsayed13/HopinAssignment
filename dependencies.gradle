@@ -69,7 +69,7 @@ ext {
             hiltXCommon      : "androidx.hilt:hilt-common:$hilt_x_version",
             hiltXViewModel   : "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_x_version",
             hiltXNavFrag     : "androidx.hilt:hilt-navigation-fragment:$hilt_x_version",
-            multidex         : 'androidx.multidex:multidex:$multidex_version'
+            multidex         : "androidx.multidex:multidex:$multidex_version"
 
     ]
 

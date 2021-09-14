@@ -1,1 +1,4 @@
-<resources></resources>
+<resources>
+    <string name="login">Login</string>
+    <string name="submit">Submit</string>
+</resources>
