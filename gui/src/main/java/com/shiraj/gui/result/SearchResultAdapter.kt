@@ -37,7 +37,7 @@ class SearchResultAdapter :
 
     class SearchResultViewDiff : DiffUtil.ItemCallback<GithubUserModel.Item>() {
         override fun areItemsTheSame(oldItem: GithubUserModel.Item, newItem: GithubUserModel.Item): Boolean {
-            return oldItem == newItem
+            return oldItem === newItem
         }
 
         override fun areContentsTheSame(oldItem: GithubUserModel.Item, newItem: GithubUserModel.Item): Boolean {

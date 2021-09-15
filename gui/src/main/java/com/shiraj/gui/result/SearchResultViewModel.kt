@@ -1,8 +1,10 @@
 package com.shiraj.gui.result
 
+import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.shiraj.base.viewmodel.BaseViewModel
 import com.shiraj.core.model.GithubUserModel
 import com.shiraj.core.usecase.GetGithubUserUseCase
@@ -19,11 +21,11 @@ internal class SearchResultViewModel @Inject constructor(
 
     val searchResults: Flow<PagingData<GithubUserModel.Item>> = Pager(
         config = PagingConfig(
-            10,
+            9,
             enablePlaceholders = false,
             prefetchDistance = 10
         )
     ) {
         SearchResultPageSource(getGithubUserUseCase, keyword)
-    }.flow
+    }.flow.cachedIn(viewModelScope)
 }
