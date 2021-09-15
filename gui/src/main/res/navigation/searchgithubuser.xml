@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/searchgithubuser"
-    app:startDestination="@id/searchFragment">
+    app:startDestination="@id/searchResultFragment">
 
     <fragment
         android:id="@+id/searchFragment"
@@ -19,8 +19,6 @@
         android:name="com.shiraj.gui.result.SearchResultFragment"
         android:label="SearchResultFragment"
         tools:layout="@layout/fragment_search_result">
-        <argument
-            android:name="searchKeyword"
-            app:argType="string" />
+
     </fragment>
 </navigation>

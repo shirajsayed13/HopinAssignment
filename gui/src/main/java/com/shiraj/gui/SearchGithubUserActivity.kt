@@ -9,7 +9,7 @@ import com.shiraj.gui.databinding.ActivitySearchGithubUserBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SearchGithubUserActivity : BaseActivity() {
+internal class SearchGithubUserActivity : BaseActivity() {
 
     override val layoutResId: Int
         get() = R.layout.activity_search_github_user

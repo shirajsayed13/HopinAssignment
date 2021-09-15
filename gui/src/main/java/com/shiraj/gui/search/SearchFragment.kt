@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
 import com.shiraj.base.fragment.BaseFragment
@@ -21,12 +20,16 @@ internal class SearchFragment : BaseFragment() {
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> ViewBinding
         get() = FragmentSearchBinding::inflate
 
-    override val binding: FragmentSearchBinding get() = super.binding as FragmentSearchBinding
-
-    private val viewModel: SearchViewModel by viewModels()
+    override val binding: FragmentSearchBinding
+        get() = super.binding as FragmentSearchBinding
 
     override fun onInitView() {
         binding.apply {
+
+            btnSubmit.setOnClickListener {
+
+            }
+
             edtLogin.setOnEditorActionListener(TextView.OnEditorActionListener { v, actionId, event ->
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                     val searchKeyword = binding.edtLogin.text.toString().trim()
