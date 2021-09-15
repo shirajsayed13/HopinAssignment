@@ -2,4 +2,5 @@
     <string name="appName">Search Github User</string>
     <string name="login">Login</string>
     <string name="submit">Submit</string>
+    <string name="no_results">No results found</string>
 </resources>

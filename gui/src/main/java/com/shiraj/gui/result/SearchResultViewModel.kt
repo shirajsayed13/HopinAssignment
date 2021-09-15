@@ -1,12 +1,13 @@
 package com.shiraj.gui.result
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
 import com.shiraj.base.viewmodel.BaseViewModel
 import com.shiraj.core.model.GithubUserModel
 import com.shiraj.core.usecase.GetGithubUserUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import timber.log.Timber
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 @HiltViewModel
@@ -14,13 +15,15 @@ internal class SearchResultViewModel @Inject constructor(
     private val getGithubUserUseCase: GetGithubUserUseCase
 ) : BaseViewModel() {
 
-    private val _userItems: MutableLiveData<List<GithubUserModel.Item>> by lazy { MutableLiveData() }
-    internal val userItems: LiveData<List<GithubUserModel.Item>> = _userItems
+    internal lateinit var keyword: String
 
-    internal fun loadSearchResult(searchKeyword: String) {
-        Timber.d("loadSearchResult: $searchKeyword")
-        launchUseCase {
-            _userItems.postValue(getGithubUserUseCase(searchKeyword))
-        }
-    }
+    val searchResults: Flow<PagingData<GithubUserModel.Item>> = Pager(
+        config = PagingConfig(
+            10,
+            enablePlaceholders = false,
+            prefetchDistance = 10
+        )
+    ) {
+        SearchResultPageSource(getGithubUserUseCase, keyword)
+    }.flow
 }
