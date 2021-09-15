@@ -24,6 +24,7 @@ class SearchResultAdapter @Inject constructor() :
             binding.apply {
                 tvUserName.text = info.login
                 ivUserPhoto.loadUrl(info.avatarUrl)
+                tvType.text = info.type
             }
         }
     }

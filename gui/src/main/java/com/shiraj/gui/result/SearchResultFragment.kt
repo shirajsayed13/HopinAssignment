@@ -49,7 +49,8 @@ internal class SearchResultFragment : BaseFragment() {
         }
 
         binding.apply {
-            pbLoading.visibility = View.VISIBLE
+            shimmerFrameLayout.startShimmer()
+            shimmerFrameLayout.visibility = View.VISIBLE
             rvItems.apply {
                 layoutManager = LinearLayoutManager(context)
                 adapter = searchResultAdapter
@@ -58,8 +59,11 @@ internal class SearchResultFragment : BaseFragment() {
     }
 
     private fun showSearchResult(userItems: List<GithubUserModel.Item>) {
+        binding.apply {
+            shimmerFrameLayout.stopShimmer()
+            shimmerFrameLayout.visibility = View.GONE
+        }
         searchResultAdapter.items = userItems
-        binding.pbLoading.visibility = View.GONE
     }
 
 
