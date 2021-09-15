@@ -4,5 +4,5 @@ import com.shiraj.core.model.GithubUserModel
 
 
 interface GithubUserWS {
-    suspend fun getGithubUserWS(): List<GithubUserModel.Item>
+    suspend fun getGithubUserWS(searchKeyword: String): List<GithubUserModel.Item>
 }

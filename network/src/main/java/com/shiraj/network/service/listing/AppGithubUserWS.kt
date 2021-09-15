@@ -10,8 +10,9 @@ internal class AppGithubUserWS @Inject constructor(
     private val githubUserWebService: RetrofitGithubUserWebService
 ) : GithubUserWS {
 
-    override suspend fun getGithubUserWS(): List<GithubUserModel.Item> = networkCall(
-        { githubUserWebService.getGithubUsers("Shiraj") },
-        { response -> response.items.map { it.toItemList() } }
-    )
+    override suspend fun getGithubUserWS(searchKeyword: String): List<GithubUserModel.Item> =
+        networkCall(
+            { githubUserWebService.getGithubUsers(searchKeyword) },
+            { response -> response.items.map { it.toItemList() } }
+        )
 }

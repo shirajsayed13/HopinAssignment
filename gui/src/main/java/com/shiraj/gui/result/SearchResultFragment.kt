@@ -1,6 +1,7 @@
 package com.shiraj.gui.result
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -38,14 +39,17 @@ internal class SearchResultFragment : BaseFragment() {
     @Inject
     lateinit var searchResultAdapter: SearchResultAdapter
 
+    private val args: SearchResultFragmentArgs by navArgs()
+
     override fun onInitView() {
         viewModel.apply {
             failure(failure, ::handleFailure)
             observe(userItems, ::showSearchResult)
-            loadSearchResult()
+            loadSearchResult(args.searchKeyword)
         }
 
         binding.apply {
+            pbLoading.visibility = View.VISIBLE
             rvItems.apply {
                 layoutManager = LinearLayoutManager(context)
                 adapter = searchResultAdapter
@@ -55,6 +59,7 @@ internal class SearchResultFragment : BaseFragment() {
 
     private fun showSearchResult(userItems: List<GithubUserModel.Item>) {
         searchResultAdapter.items = userItems
+        binding.pbLoading.visibility = View.GONE
     }
 
 

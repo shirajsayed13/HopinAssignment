@@ -27,13 +27,22 @@ internal class SearchFragment : BaseFragment() {
         binding.apply {
 
             btnSubmit.setOnClickListener {
-
+                val searchKeyword = binding.edtLogin.text.toString().trim()
+                findNavController().navigate(
+                    SearchFragmentDirections.actionSearchFragmentToSearchResultFragment(
+                        searchKeyword
+                    )
+                )
             }
 
             edtLogin.setOnEditorActionListener(TextView.OnEditorActionListener { v, actionId, event ->
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                     val searchKeyword = binding.edtLogin.text.toString().trim()
-                    //findNavController().navigate(FragmentSearch)
+                    findNavController().navigate(
+                        SearchFragmentDirections.actionSearchFragmentToSearchResultFragment(
+                            searchKeyword
+                        )
+                    )
                     return@OnEditorActionListener true
                 }
                 false

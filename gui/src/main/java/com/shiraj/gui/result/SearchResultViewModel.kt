@@ -17,10 +17,10 @@ internal class SearchResultViewModel @Inject constructor(
     private val _userItems: MutableLiveData<List<GithubUserModel.Item>> by lazy { MutableLiveData() }
     internal val userItems: LiveData<List<GithubUserModel.Item>> = _userItems
 
-    internal fun loadSearchResult() {
-        Timber.d("loadSearchResult: ")
+    internal fun loadSearchResult(searchKeyword: String) {
+        Timber.d("loadSearchResult: $searchKeyword")
         launchUseCase {
-            _userItems.postValue(getGithubUserUseCase())
+            _userItems.postValue(getGithubUserUseCase(searchKeyword))
         }
     }
 }

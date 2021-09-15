@@ -22,7 +22,6 @@ internal class SearchGithubUserActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        window.statusBarColor = ContextCompat.getColor(this, android.R.color.transparent)
     }
 
 }

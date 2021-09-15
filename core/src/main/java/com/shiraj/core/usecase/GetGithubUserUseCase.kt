@@ -8,7 +8,7 @@ class GetGithubUserUseCase @Inject constructor(
     private val githubUserWS: GithubUserWS
 ) {
 
-    suspend operator fun invoke(): List<GithubUserModel.Item> {
-        return githubUserWS.getGithubUserWS()
+    suspend operator fun invoke(searchKeyword: String): List<GithubUserModel.Item> {
+        return githubUserWS.getGithubUserWS(searchKeyword)
     }
 }

@@ -1,4 +1,5 @@
 <resources>
+    <string name="appName">Search Github User</string>
     <string name="login">Login</string>
     <string name="submit">Submit</string>
 </resources>
