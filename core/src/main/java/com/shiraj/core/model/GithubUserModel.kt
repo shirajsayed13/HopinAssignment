@@ -17,6 +17,5 @@ data class GithubUserModel(
         val id: Int,
         val login: String,
         val type: String,
-        val url: String
     ) : Parcelable
 }

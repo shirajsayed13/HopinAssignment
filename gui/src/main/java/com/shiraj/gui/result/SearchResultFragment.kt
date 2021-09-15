@@ -63,7 +63,8 @@ internal class SearchResultFragment : BaseFragment() {
             shimmerFrameLayout.stopShimmer()
             shimmerFrameLayout.visibility = View.GONE
         }
-        searchResultAdapter.items = userItems
+        val sortedBy = userItems.sortedBy { it.login }
+        searchResultAdapter.items = sortedBy
     }
 
 

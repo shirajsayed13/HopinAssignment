@@ -16,7 +16,6 @@ internal fun GithubUserResponse.Item.toItemList() = GithubUserModel.Item(
     avatarUrl = avatarUrl,
     login = login,
     type = type,
-    url = url
 )
 
 @JsonClass(generateAdapter = true)
@@ -37,8 +36,6 @@ data class GithubUserResponse(
         @Json(name = "login")
         val login: String,
         @Json(name = "type")
-        val type: String,
-        @Json(name = "url")
-        val url: String
+        val type: String
     )
 }
