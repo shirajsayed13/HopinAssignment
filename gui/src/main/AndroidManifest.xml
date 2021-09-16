@@ -8,7 +8,7 @@
     <application>
         <activity
             android:name=".SearchGithubUserActivity"
-            android:exported="false"
+            android:exported="true"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>

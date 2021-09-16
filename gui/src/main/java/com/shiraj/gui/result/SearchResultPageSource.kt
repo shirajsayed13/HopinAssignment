@@ -31,7 +31,7 @@ class SearchResultPageSource(
                 page + 1
             }
             LoadResult.Page(
-                response,
+                sortItemsByLogin(response),
                 prevKey = if (page == INDEX_PAGE) null else page - 1,
                 nextKey = nextKey
             )
@@ -40,5 +40,14 @@ class SearchResultPageSource(
         } catch (exception: HttpException) {
             LoadResult.Error(exception)
         }
+    }
+
+    private fun sortItemsByLogin(response: List<GithubUserModel.Item>): List<GithubUserModel.Item> {
+        val items = mutableListOf<GithubUserModel.Item>()
+        items.addAll(response)
+        items.sortedBy {
+            it.login
+        }
+        return items
     }
 }

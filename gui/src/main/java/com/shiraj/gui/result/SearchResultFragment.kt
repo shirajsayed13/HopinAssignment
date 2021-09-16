@@ -38,7 +38,7 @@ internal class SearchResultFragment : BaseFragment() {
 
     private val viewModel: SearchResultViewModel by viewModels()
 
-    internal lateinit var searchResultAdapter: SearchResultAdapter
+    private lateinit var searchResultAdapter: SearchResultAdapter
 
     private val args: SearchResultFragmentArgs by navArgs()
 
@@ -65,13 +65,12 @@ internal class SearchResultFragment : BaseFragment() {
                     rvItems.isVisible = false
                     tvNoSearchResult.isVisible = true
                 } else {
+                    showSearchResult()
                     rvItems.isVisible = true
                     tvNoSearchResult.isVisible = false
                 }
             }
         }
-
-        showSearchResult()
     }
 
     private fun showSearchResult() {
